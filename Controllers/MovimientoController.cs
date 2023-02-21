@@ -7,7 +7,7 @@ using TEST.Services.LoggerManager;
 
 namespace TEST.Controllers
 {
-    [Route("api/movimientos")]
+    [Route("movimientos")]
     public class MovimientoController : Controller
     {
         private readonly IRepositoryMovimiento _repositoryMovimiento;

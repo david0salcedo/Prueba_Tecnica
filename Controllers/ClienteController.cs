@@ -5,7 +5,7 @@ using TEST.Repository.Cliente;
 
 namespace TEST.Controllers
 {
-    [Route("api/clientes")]
+    [Route("clientes")]
     public class ClienteController : Controller
     {
         private readonly IRepositoryCliente _repositoryCliente;

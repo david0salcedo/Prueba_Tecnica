@@ -4,7 +4,7 @@ using TEST.Repository.Cuenta;
 
 namespace TEST.Controllers
 {
-    [Route("api/cuentas")]
+    [Route("cuentas")]
     public class CuentaController : Controller
     {
         private readonly IRepositoryCuenta _repositoryCuenta;

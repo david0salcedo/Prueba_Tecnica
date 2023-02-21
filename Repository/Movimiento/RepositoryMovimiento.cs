@@ -80,9 +80,11 @@ namespace TEST.Repository.Movimiento
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Movimiento Movimiento = await context.Movimientos.FirstOrDefaultAsync(p => p.MovimientoId == MovimientoId);
+                Models.Movimiento Movimiento = await context.Movimientos.AsNoTracking().FirstOrDefaultAsync(p => p.MovimientoId == MovimientoId);
 
                 if (Movimiento == null) { new Models.Movimiento(); }
+
+                 Movimiento.Cuenta = await context.Cuentas.AsNoTracking().FirstOrDefaultAsync(p => p.CuentaId == Movimiento.CuentaId);
 
                 return Movimiento;
             }
@@ -94,9 +96,15 @@ namespace TEST.Repository.Movimiento
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                List<Models.Movimiento> Movimientos = await context.Movimientos.ToListAsync();
+                List<Models.Movimiento> Movimientos = await context.Movimientos.AsNoTracking().ToListAsync();
 
                 if (Movimientos == null) { return new List<Models.Movimiento>(); }
+
+                foreach (var item in Movimientos)
+                {
+                    item.Cuenta = await context.Cuentas.AsNoTracking().FirstOrDefaultAsync(p => p.CuentaId == item.CuentaId);
+
+                }
 
                 return Movimientos;
             }

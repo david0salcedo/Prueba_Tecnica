@@ -6,7 +6,7 @@ using TEST.Services.LoggerManager;
 
 namespace TEST.Controllers
 {
-    [Route("api/personas")]
+    [Route("personas")]
     public class PersonaController : Controller
     {
         private readonly IRepositoryPersona _repositoryPersona;
