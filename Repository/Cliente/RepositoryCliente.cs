@@ -57,7 +57,7 @@ namespace TEST.Repository.Cliente
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Cliente ClienteEliminar = await context.Clientes.FirstOrDefaultAsync(p => p.ClienteId == ClienteId);
+                Models.Cliente ClienteEliminar = await context.Clientes.AsNoTracking().FirstOrDefaultAsync(p => p.ClienteId == ClienteId);
 
                 if (ClienteEliminar == null) { return true; }
 
@@ -81,7 +81,7 @@ namespace TEST.Repository.Cliente
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Cliente Cliente = await context.Clientes.FirstOrDefaultAsync(p => p.ClienteId == ClienteId);
+                Models.Cliente Cliente = await context.Clientes.Include(p => p.Persona).Include(c => c.Cuenta).AsNoTracking().FirstOrDefaultAsync(p => p.ClienteId == ClienteId);
 
                 if (Cliente == null) { new Models.Cliente(); }
 
@@ -95,7 +95,7 @@ namespace TEST.Repository.Cliente
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                List<Models.Cliente> Clientes = await context.Clientes.ToListAsync();
+                List<Models.Cliente> Clientes = await context.Clientes.Include(p => p.Persona).Include(c => c.Cuenta).AsNoTracking().ToListAsync();
 
                 if (Clientes == null) { return new List<Models.Cliente>(); }
 

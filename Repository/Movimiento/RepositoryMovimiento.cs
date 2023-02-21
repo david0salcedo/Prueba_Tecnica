@@ -56,7 +56,7 @@ namespace TEST.Repository.Movimiento
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Movimiento MovimientoEliminar = await context.Movimientos.FirstOrDefaultAsync(p => p.MovimientoId == MovimientoId);
+                Models.Movimiento MovimientoEliminar = await context.Movimientos.AsNoTracking().FirstOrDefaultAsync(p => p.MovimientoId == MovimientoId);
 
                 if (MovimientoEliminar == null) { return true; }
 

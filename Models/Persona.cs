@@ -20,6 +20,6 @@ namespace TEST.Models
 
     public enum Genero
     {
-        M, F
+        Masculino, Femenino
     }
 }

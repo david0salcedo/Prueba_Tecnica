@@ -57,7 +57,7 @@ namespace TEST.Repository.Persona
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Persona personaEliminar = await context.Personas.FirstOrDefaultAsync(p => p.PersonaId == personaId);
+                Models.Persona personaEliminar = await context.Personas.AsNoTracking().FirstOrDefaultAsync(p => p.PersonaId == personaId);
                    
                     if (personaEliminar == null) { return true; }
 
@@ -81,11 +81,13 @@ namespace TEST.Repository.Persona
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Persona persona = await context.Personas.FirstOrDefaultAsync(p => p.PersonaId == personaId);
+                Models.Persona persona = await context.Personas.AsNoTracking().FirstOrDefaultAsync(p => p.PersonaId == personaId);
 
                     if (persona == null) { new Models.Persona(); }
 
-                    return persona;
+                 persona.Cliente = await context.Clientes.AsNoTracking().FirstOrDefaultAsync(p => p.PersonaId == personaId);
+
+                return persona;
                 }
 
         }
@@ -95,9 +97,15 @@ namespace TEST.Repository.Persona
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                List<Models.Persona> personas = await context.Personas.ToListAsync();
+                List<Models.Persona> personas = await context.Personas.AsNoTracking().ToListAsync();
 
                 if (personas == null) { return new List<Models.Persona>(); }
+
+                foreach (var persona in personas)
+                {
+                    persona.Cliente = await context.Clientes.AsNoTracking().FirstOrDefaultAsync(p => p.PersonaId == persona.PersonaId);
+
+                }
 
                 return personas;
             }

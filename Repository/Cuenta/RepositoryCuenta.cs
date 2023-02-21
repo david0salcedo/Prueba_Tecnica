@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using TEST.Models;
 
 namespace TEST.Repository.Cuenta
 {
@@ -57,7 +58,7 @@ namespace TEST.Repository.Cuenta
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Cuenta CuentaEliminar = await context.Cuentas.FirstOrDefaultAsync(p => p.CuentaId == CuentaId);
+                Models.Cuenta CuentaEliminar = await context.Cuentas.AsNoTracking().FirstOrDefaultAsync(p => p.CuentaId == CuentaId);
 
                 if (CuentaEliminar == null) { return true; }
 
@@ -81,9 +82,11 @@ namespace TEST.Repository.Cuenta
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                Models.Cuenta Cuenta = await context.Cuentas.FirstOrDefaultAsync(p => p.CuentaId == CuentaId);
+                Models.Cuenta Cuenta = await context.Cuentas.Include(m => m.Movimientos).AsNoTracking().FirstOrDefaultAsync(p => p.CuentaId == CuentaId);
 
                 if (Cuenta == null) { new Models.Cuenta(); }
+
+                 Cuenta.Cliente = await context.Clientes.AsNoTracking().FirstOrDefaultAsync(p => p.CuentaId == CuentaId);
 
                 return Cuenta;
             }
@@ -95,10 +98,15 @@ namespace TEST.Repository.Cuenta
 
             using (ContextDB context = new ContextDB(_configuration))
             {
-                List<Models.Cuenta> Cuentas = await context.Cuentas.ToListAsync();
+                List<Models.Cuenta> Cuentas = await context.Cuentas.Include(m => m.Movimientos).AsNoTracking().ToListAsync();
 
                 if (Cuentas == null) { return new List<Models.Cuenta>(); }
 
+                foreach (var item in Cuentas)
+                {
+                    item.Cliente = await context.Clientes.AsNoTracking().FirstOrDefaultAsync(p => p.CuentaId == item.CuentaId);
+
+                }
                 return Cuentas;
             }
 
