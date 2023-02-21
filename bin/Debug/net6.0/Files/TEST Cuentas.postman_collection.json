@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "e5787453-0287-4a1f-a903-086c2e901463",
+		"name": "TEST Cuentas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Cuenta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/cuentas/1",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"cuentas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Cuentas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/cuentas",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Cuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cuentaId\": 0,\r\n  \"numeroCuenta\": 0,\r\n  \"tipoCuenta\": 0,\r\n  \"saldoInicial\": 0,\r\n  \"estado\": true\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/cuentas",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Cuenta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cuentaId\": 1,\r\n  \"numeroCuenta\": 122332131,\r\n  \"tipoCuenta\": 0,\r\n  \"saldoInicial\": 0,\r\n  \"estado\": true\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/cuentas",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Cuenta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/cuentas",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

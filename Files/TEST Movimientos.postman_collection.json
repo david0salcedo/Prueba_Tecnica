@@ -23,6 +23,26 @@
 			"response": []
 		},
 		{
+			"name": "Obtener Movimientos por Fecha",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/movimientos/reporte/2023-02-20/2023-02-22",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"movimientos",
+						"reporte",
+						"2023-02-20",
+						"2023-02-22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Obtener Movimiento",
 			"request": {
 				"method": "GET",

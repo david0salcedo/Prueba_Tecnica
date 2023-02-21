@@ -112,5 +112,21 @@ namespace TEST.Controllers
                 throw new Exception("Exception EliminarMovimiento", ex);
             }
         }
+
+        [HttpGet("reporte/{fechaInicio}/{fechaFinal}")]
+        public async Task<ActionResult> ReproteMovimientos(DateTime fechaInicio, DateTime fechaFinal)
+        {
+            try
+            {
+                List<Movimiento> Movimientos = await _repositoryMovimiento.ReproteMovimientos(fechaInicio, fechaFinal);
+
+                return Ok(Movimientos);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception ReproteMovimientos", ex);
+            }
+        }
+
     }
 }

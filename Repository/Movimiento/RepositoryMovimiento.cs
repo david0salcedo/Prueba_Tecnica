@@ -110,5 +110,26 @@ namespace TEST.Repository.Movimiento
             }
 
         }
+
+        public async Task<List<Models.Movimiento>> ReproteMovimientos(DateTime fechaInicio, DateTime fechaFinal)
+        {
+
+            using (ContextDB context = new ContextDB(_configuration))
+            {
+                List<Models.Movimiento> Movimientos = await context.Movimientos.AsNoTracking().Where(m => m.Fecha >= fechaInicio && m.Fecha <= fechaFinal).ToListAsync();
+
+                if (Movimientos == null) { return new List<Models.Movimiento>(); }
+
+                foreach (var item in Movimientos)
+                {
+                    item.Cuenta = await context.Cuentas.AsNoTracking().FirstOrDefaultAsync(p => p.CuentaId == item.CuentaId);
+
+                }
+
+                return Movimientos;
+            }
+
+        }
+
     }
 }

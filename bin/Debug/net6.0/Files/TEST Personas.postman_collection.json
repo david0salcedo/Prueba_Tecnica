@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "706370bd-abde-4948-8a12-1ea3d60e1689",
+		"name": "TEST Personas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Pesonas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/personas",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Pesona",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/personas/4",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"personas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Persona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"personaId\": 0,\r\n  \"nombre\": \"string\",\r\n  \"genero\": 0,\r\n  \"edad\": 0,\r\n  \"identificacion\": \"string\",\r\n  \"direccion\": \"string\",\r\n  \"telefono\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/personas",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Persona",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"personaId\": 3,\r\n  \"nombre\": \"david\",\r\n  \"genero\": 0,\r\n  \"edad\": 0,\r\n  \"identificacion\": \"string\",\r\n  \"direccion\": \"string\",\r\n  \"telefono\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/personas",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Persona",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/personas/4",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"personas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -30,7 +30,7 @@ using (ContextDB context = new ContextDB(builder.Configuration))
     context.Database.Migrate();
 }
 
-    var app = builder.Build();
+var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILoggerManager>();
 app.ConfigureExceptionHandler(logger);
